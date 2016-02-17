@@ -12,7 +12,12 @@ public class MainMenuScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(Input.GetKeyDown(KeyCode.Space)) {
-			SceneManager.LoadScene("Ghosts");
+			StartCoroutine ("ChangeLevel");
 		}
+	}
+	IEnumerator ChangeLevel() {
+		float fadeTime = GameObject.Find("Main Camera").GetComponent<fading>().BeginFade(1);
+		yield return new WaitForSeconds (fadeTime);
+		SceneManager.LoadScene("Ghosts");
 	}
 }
